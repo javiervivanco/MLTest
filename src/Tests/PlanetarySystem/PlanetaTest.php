@@ -12,7 +12,7 @@ class PlanetTest extends \PHPUnit_Framework_TestCase {
     public function testNewPlanet(){
 
         $name = 'Planet Test1';
-        $ang_vel = Util::grad2Rad(10);
+        $ang_vel = deg2rad(10);
         $radio   = 100;
         $clockwise = true;
         $sun     = new Sun();
@@ -28,8 +28,8 @@ class PlanetTest extends \PHPUnit_Framework_TestCase {
         
         $grad       = 5;
         $days_in_year = 360/$grad;
-        $rad_by_day = Util::grad2Rad($grad);
-        $ang_vel   = Util::grad2Rad($grad);
+        $rad_by_day = deg2rad($grad);
+        $ang_vel   = deg2rad($grad);
         $clockwise = false;
         $radio     = 1000;
         $sun       = new Sun();
@@ -46,7 +46,7 @@ class PlanetTest extends \PHPUnit_Framework_TestCase {
             }
     }
     public function testPositionRefSunByTimeClockwise(){        
-        $ang_vel   = Util::grad2Rad(1);
+        $ang_vel   = deg2rad(1);
         $clockwise = true;
         $radio     = 1000;
         $sun       = new Sun();
@@ -62,7 +62,7 @@ class PlanetTest extends \PHPUnit_Framework_TestCase {
         }
     }
     public function testPositionCartesianByTime(){
-        $ang_vel   = Util::grad2Rad(1);
+        $ang_vel   = deg2rad(1);
         $clockwise = false;
         $radio     = 1000;
         $sun       = new Sun();

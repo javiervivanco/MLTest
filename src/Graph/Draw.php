@@ -7,7 +7,7 @@ class Draw {
     public function __construct(Sun $sun){
         $this->sun = $sun;
     }
-    public function drawADay($day){
+    public function drawADay($day, $path='/tmp/%s.gif'){
  
         $image = new \Imagick(); 
         $draw = new \ImagickDraw(); 
@@ -30,7 +30,8 @@ class Draw {
         }
         $name .= '_'.$day;
         $image->drawImage($draw); 
-        $image->writeImages("/tmp/$name.gif", true); 
+        $image->writeImages(sprintf($path, $name), true); 
+        $image->clear();
     }
 
     public function drawRangeDays($from_day, $to_day){
@@ -38,17 +39,18 @@ class Draw {
             $this->drawADay($i);
         }
 
-        $multiTIFF = new Imagick();
-        $mytifspath = "/tmp/*.gif";
+        $multiTIFF = new \Imagick();
+        $mytifspath = "/tmp/gif";
         $files = scandir($mytifspath);
 
-        for($i=2;$i<6;$i++)
-        {
-            echo $files[$i];
+        foreach ($files as $key => $value) {
+            if(in_array($value, array('.','..')))continue;
+            echo $value;
             echo "\n";
-            $auxIMG = new Imagick();
-            $auxIMG->readImage("/tmp/".$files[$i]);
+            $auxIMG = new \Imagick();
+            $auxIMG->readImage("/tmp/gif/".$value);
             $multiTIFF->addImage($auxIMG);
+            $auxIMG->clear();
         }
 
         $multiTIFF->writeImages('/tmp/animate1.gif', true); 
