@@ -68,7 +68,7 @@ $app->get('/clima/{dia}', function($dia) use($app, $weather) {
 
 });
 
-$app->get('/clima/ver/{dia}', function($dia) use($app, $draw) { 
+$app->get('/planetas/ver/{dia}', function($dia) use($app, $draw) { 
     $file=$draw->drawADay($dia);
     
     if (!file_exists($file)) {
